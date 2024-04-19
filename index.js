@@ -7,11 +7,7 @@ cron.schedule('*/1 * * * *', async (now) => {
 
   const websites = [
     { query: 'vh magazine', website: 'vh.ma', visited: false },
-    {
-      query: 'DXB Airport Dubai',
-      website: 'https://dxb-airport.com',
-      visited: false,
-    },
+    ,
     {
       query: 'casablanca airport',
       website: 'https://cmnairport.com',
