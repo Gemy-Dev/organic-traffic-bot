@@ -1,23 +1,51 @@
-import cron from 'node-cron';
-import { searchGoogle } from './traffic-bot.js';
+import puppeteer from 'puppeteer';
 
-cron.schedule('*/1 * * * *', async (now) => {
-  console.log('-------------------------');
-  console.log('Running Cron Job At : ', now);
+export async function searchGoogle(query, website) {
+  const browser = await puppeteer.launch({ headless: false }); // Set headless to false to see the browser in action
+  const page = await browser.newPage();
 
-  const websites = [
-    { query: 'vh magazine', website: 'vh.ma', visited: false },
-    { query: 'dxb-airport.com', website: 'dxb-airport.com', visited: false },
-  ];
+  // Step 1: Search for a keyword in Google
+  await page.goto('https://www.google.com');
+  await page.type('textarea[name=q]', query); // Replace 'your keyword here' with your actual keyword
+  await page.keyboard.press('Enter');
 
-  websites.forEach(async (website) => {
-    if (!website.visited) {
-      console.log('Visiting website : ', website.website);
-      website.visited = true;
-    }
+  await page.waitForNavigation({
+    waitUntil: 'domcontentloaded',
   });
 
-  console.log(websites);
+  const searchResults = await page.$$('a');
+  let resultToClick;
+  const resultLinks = [];
+  for (let link of searchResults) {
+    const href = await page.evaluate((el) => el.href, link);
+    if (href && href.includes(website)) {
+      resultLinks.push(link);
+    }
+  }
 
-  console.log('-------------------------');
-});
+  if (resultLinks.length > 0) {
+    resultToClick = resultLinks[0];
+    console.log('Visiting website : ', website);
+  } else {
+    console.log('No search results for this keyword : ', query);
+    await browser.close();
+    return;
+  }
+
+  await resultToClick.scrollIntoView();
+  await resultToClick.click();
+
+  // click random links on the website
+
+  await page.waitForNavigation({
+    waitUntil: 'networkidle2',
+  });
+
+  // wait using Promise for random time to simulate human behavior
+  const randomTime = Math.floor(Math.random() * 5000) + 3000;
+  await new Promise((resolve) => setTimeout(resolve, randomTime));
+
+  await browser.close();
+}
+
+await searchGoogle('vh magazine', 'vh.ma');
