@@ -8,8 +8,12 @@ cron.schedule('*/1 * * * *', async (now) => {
   const websites = [
     { query: 'vh magazine', website: 'vh.ma' },
     {
-      query: 'mypoufs.cpm',
+      query: 'mypoufs.com',
       website: 'mypoufs.com',
+    },
+    {
+      query: 'azdine bouali',
+      website: 'azdinebouali.tech',
     },
   ];
 
