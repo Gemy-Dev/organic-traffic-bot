@@ -6,20 +6,16 @@ cron.schedule('*/1 * * * *', async (now) => {
   console.log('Running Cron Job At : ', now);
 
   const websites = [
-    { query: 'vh magazine', website: 'vh.ma', visited: false },
-    ,
+    { query: 'vh magazine', website: 'vh.ma' },
     {
-      query: 'casablanca airport',
-      website: 'https://cmnairport.com',
+      query: 'mypoufs.cpm',
+      website: 'mypoufs.com',
     },
   ];
 
   for (const website of websites) {
-    if (!website.visited) {
-      console.log('Visiting website : ', website.website);
-      await searchGoogle(website.query, website.website);
-      website.visited = true;
-    }
+    console.log('Visiting website : ', website.website);
+    await searchGoogle(website.query, website.website);
   }
 
   console.log(websites);
