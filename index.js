@@ -12,7 +12,10 @@ cron.schedule('*/1 * * * *', async (now) => {
       website: 'https://dxb-airport.com',
       visited: false,
     },
-    ,
+    {
+      query: 'casablanca airport',
+      website: 'https://cmnairport.com',
+    },
   ];
 
   for (const website of websites) {
