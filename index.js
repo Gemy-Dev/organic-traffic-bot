@@ -1,19 +1,15 @@
 import cron from 'node-cron';
 import { searchGoogle } from './traffic-bot.js';
 
-cron.schedule('*/5 * * * *', async (now) => {
+cron.schedule('*/1 * * * *', async (now) => {
   console.log('-------------------------');
   console.log('Running Cron Job At : ', now);
 
   const websites = [
-    { query: 'vh magazine', website: 'vh.ma' },
+    { query: 'mypoufs.com', website: 'https://mypoufs.com' },
     {
-      query: 'mypoufs.com',
-      website: 'mypoufs.com',
-    },
-    {
-      query: 'azdine bouali',
-      website: 'azdinebouali.tech',
+      query: 'dxb-airport.com',
+      website: 'https://dxb-airport.com/',
     },
   ];
 
