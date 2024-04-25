@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 
 export async function searchGoogle(query, website) {
-  const browser = await puppeteer.launch({ headless: false }); // Set headless to false to see the browser in action
+  const browser = await puppeteer.launch({ headless: true }); // Set headless to false to see the browser in action
   const page = await browser.newPage();
 
   // Step 1: Search for a keyword in Google

@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import { searchGoogle } from './traffic-bot.js';
 
-cron.schedule('*/1 * * * *', async (now) => {
+cron.schedule('*/5 * * * *', async (now) => {
   console.log('-------------------------');
   console.log('Running Cron Job At : ', now);
 
