@@ -8,8 +8,12 @@ cron.schedule('*/1 * * * *', async (now) => {
   const websites = [
     { query: 'mypoufs.com', website: 'https://mypoufs.com' },
     {
-      query: 'dxb-airport.com',
-      website: 'https://dxb-airport.com/',
+      query: 'arganit.com',
+      website: 'https://arganit.com',
+    },
+    {
+      query: 'comparateurmaroc.com',
+      website: 'https://comparateurmaroc.com/',
     },
   ];
 
